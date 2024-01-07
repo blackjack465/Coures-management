@@ -35,7 +35,7 @@ This project is open-source and is licensed under the [MIT License](LICENSE). Fe
 ## Install Dependencies:
 
 ```bash
-cd course-management
+cd Coures-management
 composer install
 
 ```
