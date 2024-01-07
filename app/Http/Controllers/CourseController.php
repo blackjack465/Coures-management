@@ -78,8 +78,20 @@ class CourseController extends Controller
         return redirect()->route('course.index');
     }
 
-    public function destroy($id){
-        //Destroy the entry from the database
+    public function destroy($id) {
+    // Find the course by ID
+    $course = Course::find($id);
 
+    // Check if the course exists
+    if (!$course) {
+        return redirect()->route('course.index')->with('error', 'Course not found.');
     }
+
+    // Delete the course
+    $course->delete();
+
+    // Redirect to the index page with a success message
+    return redirect()->route('course.index')->with('success', 'Course deleted successfully.');
+}
+
 }

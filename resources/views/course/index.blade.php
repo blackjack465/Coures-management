@@ -12,7 +12,7 @@
         }
 
         h1 {
-            padding-top : 0.5cm;
+            padding-top: 0.5cm;
         }
 
         th, td {
@@ -36,19 +36,39 @@
         }
 
         /* Button Styles */
-        .button-container a {
+        .button-container a, .button-container form {
             display: inline-block;
             margin-left: 10px;
-            padding: 8px 12px;
             text-decoration: none;
-            background-color: #176B87; /* Dark Blue */
-            color: #EEF5FF; /* Light Blue */
             border-radius: 5px;
             transition: background-color 0.3s;
         }
 
+        .button-container a, .button-container button {
+            padding: 8px 12px;
+        }
+
+        .button-container a {
+            background-color: #176B87; /* Dark Blue */
+            color: #EEF5FF; /* Light Blue */
+        }
+
         .button-container a:hover {
             background-color: #004262; /* Darker Blue on hover */
+        }
+
+        .button-container .delete-btn {
+            background-color: #FF6961; /* Red */
+            color: #FFFFFF; /* White text for better visibility */
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border : 0px;
+            padding: 8px 12px;
+            margin-left: 10px;
+        }
+
+        .button-container .delete-btn:hover {
+            background-color: #CC0000; /* Darker Red on hover */
         }
     </style>
 
@@ -72,6 +92,13 @@
                     <td class="button-container">
                         <a href="{{ route('course.show', $course->id) }}">View</a>
                         <a href="{{ route('course.edit', $course->id) }}">Edit</a>
+
+                        <!-- Form for the delete button -->
+                        <form method="POST" action="{{ route('course.destroy', $course->id) }}" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="delete-btn">Delete</button>
+                        </form>
                     </td>
                 </tr>
             @endforeach
