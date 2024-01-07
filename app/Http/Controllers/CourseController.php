@@ -13,14 +13,13 @@ class CourseController extends Controller
         $courses = Course::all();
         return view('course.index', compact('courses'));
     }
-
+//-------------------------------------------------------------------------
     public function create(){
         //Routing to the views wich will hold the create form
-
         return view('course.create');
 
     }
-
+//-------------------------------------------------------------------------
     public function store(Request $request){
         //This will create the entry for the course
         // Validation rules
@@ -48,15 +47,14 @@ class CourseController extends Controller
 
     return redirect()->route('course.index');
     }
-
+//-------------------------------------------------------------------------
     public function show($id){
         //Fetching the data from the database
 
         $course = Course::find($id);
         return view('course.show' , compact('course'));
-
     }
-
+//-------------------------------------------------------------------------
     public function edit($id){
         //Edit the data
         $course = Course::find($id);
@@ -64,20 +62,33 @@ class CourseController extends Controller
         return view('course.edit' , compact('course'));
 
     }
+//-------------------------------------------------------------------------
+    public function update(Request $request, $id)
+    {
+        // Data validation rules
+        $rules = [
+            'title' => 'required|string|max:255',
+            'instructor' => 'required|string|max:255',
+            'courseHead' => 'required|string|max:255',
+        ];
 
-    public function update(Request $request, $id){
-        //Logic to update the record in the database and do somthing about it
+        // Custom error messages
+        $messages = [
+            'required' => 'The :attribute field is required.',
+            'string' => 'The :attribute must be a string.',
+            'max' => 'The :attribute must not exceed :max characters.',
+        ];
 
-        //Data validation
+        // Validate the request
+        $request->validate($rules, $messages);
 
-        //update
+        // Update the course
         Course::find($id)->update($request->all());
 
-        //rederict to the index page
-
+        // Redirect to the index page
         return redirect()->route('course.index');
     }
-
+//-------------------------------------------------------------------------
     public function destroy($id) {
     // Find the course by ID
     $course = Course::find($id);
