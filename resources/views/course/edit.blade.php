@@ -19,10 +19,6 @@
         color: #176B87;
     }
 
-    h1 {
-            padding-top : 0.5cm;
-    }
-
     input {
         width: 100%;
         padding: 10px;
@@ -40,23 +36,28 @@
         border-radius: 5px;
         cursor: pointer;
     }
+
+    h1 {
+            padding-top : 0.5cm;
+        }
 </style>
 
-<h1>Add Course</h1>
+<h1>Edit Course</h1>
 
-<form method="post" action="{{ route('course.store') }}">
+<form method="post" action="{{ route('course.update' , $course->id ) }}">
     @csrf
+    @method('PUT')
 
     <label for="title">Course Title</label>
-    <input type="text" name="title" id="title" required>
+    <input type="text" name="title" value=" {{ $course->title }} " id="title" required>
 
     <label for="instructor">Instructor</label>
-    <input type="text" name="instructor" id="instructor" required>
+    <input type="text" name="instructor" value=" {{ $course->instructor }} " id="instructor" required>
 
     <label for="courseHead">Course Head</label>
-    <input type="text" name="courseHead" id="courseHead" required>
+    <input type="text" name="courseHead" value=" {{ $course->courseHead }} " id="courseHead" required>
 
-    <button type="submit">Add Course</button>
+    <button type="submit">Edit Course</button>
 </form>
 
 @endsection

@@ -52,15 +52,30 @@ class CourseController extends Controller
     public function show($id){
         //Fetching the data from the database
 
+        $course = Course::find($id);
+        return view('course.show' , compact('course'));
+
     }
 
     public function edit($id){
         //Edit the data
+        $course = Course::find($id);
+
+        return view('course.edit' , compact('course'));
+
     }
 
     public function update(Request $request, $id){
         //Logic to update the record in the database and do somthing about it
 
+        //Data validation
+
+        //update
+        Course::find($id)->update($request->all());
+
+        //rederict to the index page
+
+        return redirect()->route('course.index');
     }
 
     public function destroy($id){
