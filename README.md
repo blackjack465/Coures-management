@@ -29,3 +29,27 @@ The Course App is built using the Laravel PHP framework, ensuring a robust and s
 ## License
 
 This project is open-source and is licensed under the [MIT License](LICENSE). Feel free to use, modify, and share it with others.
+
+---
+
+## Install Dependencies:
+
+```bash
+cd course-management
+composer install
+
+```
+***Configure your environment variables:***
+```bash
+cp .env.example .env
+Update the .env file with your database and other configurations.
+```
+***Run migrations:***
+```bash
+php artisan migrate
+```
+***Serve the application:***
+```bash
+php artisan serve
+Visit http://localhost:8000 in your browser.
+```
